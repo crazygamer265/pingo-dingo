@@ -1,0 +1,32 @@
+Unset 
+name: Deploy to AWS EC2
+
+on:
+ push:
+  branches:
+   -main
+
+jobs:
+ deploy:
+  runs-on: ubuntu-latest
+
+  steps:
+   - name: Checkout code
+    uses: actions/checkout@v2
+
+   - name: Set up Terraform
+    uses :hashicorp/setup-terraform@v1
+    with:
+     terraform_version: 1.0.0
+
+   - name: Terraform Initialization
+    run: terraform init
+
+   - name: Terraform Initialization
+    run: terraform init
+
+    - name: Deploy infrastructure
+     run: |
+      terraform apply -auto-approve
+
+   
