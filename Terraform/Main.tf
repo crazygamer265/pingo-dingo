@@ -13,6 +13,7 @@ provider "aws" {
     region = "us-west-2"
     access_key = var.aws_access_key_id
     secret_key = var.aws_secret_access_key
+
 }
 
 resource "aws_instance" "app_server" {
@@ -23,9 +24,8 @@ resource "aws_instance" "app_server" {
     tags = {
         Name = "ExampleAppServerInstance"
     }
-}
-
- provisioner "remote-exec" {
+    
+    provisioner "remote-exec" {
     inline = [
       "sudo yum update -y",
       "mkdir project",
@@ -54,6 +54,9 @@ resource "aws_instance" "app_server" {
     }
   }
 }
+
+ 
+
 
 variable "private_key_base64" {
   description = "Base64 encoded private key content"
