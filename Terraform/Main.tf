@@ -20,7 +20,7 @@ provider "aws" {
 resource "aws_instance" "app_server" {
     ami = "ami-0b20a6f09484773af"
     instance_type = "t2.micro"
-    key_name = "dr.madhuproject_access-Keys"
+    key_name = "key-pair"
     vpc_security_group_ids = ["sg-0141a409a04178f57"]
     tags = {
         Name = "ExampleAppServerInstance"
