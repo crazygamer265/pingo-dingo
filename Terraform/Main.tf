@@ -43,8 +43,6 @@ resource "aws_instance" "app_server" {
       "cd ~/project/test",
       "npm start"
       # Additional commands to start your application
-
-
     ]
 
     connection {
