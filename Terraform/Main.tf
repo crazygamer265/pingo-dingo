@@ -4,7 +4,7 @@ terraform{
    aws = {
     source = "hashicorp/aws"
     version = "~> 4.16"
-    
+
    }
  }
  required_version = ">=1.2.0"
@@ -44,6 +44,7 @@ resource "aws_instance" "app_server" {
       "cd ~/project/test",
       "npm start"
       # Additional commands to start your application
+
 
     ]
 
