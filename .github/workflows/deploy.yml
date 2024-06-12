@@ -6,9 +6,9 @@ on:
 
     branches:
       - main  # or whatever branch you want to trigger on
-    paths:
-      - .github/workflows/deploy.yml
-      - Terraform/Main.tf
+    # paths:
+    #   - .github/workflows/deploy.yml
+    #   - Terraform/Main.tf
       
  
       
