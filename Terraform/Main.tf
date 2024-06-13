@@ -42,7 +42,9 @@ resource "aws_instance" "app_server" {
       "npm install react-scripts --save-dev",
       "npm install react-dom",
       "npm install react-router-dom",
+      "cd ~/project/pingo-dingo/src",
       "npm start"
+    
       # Additional commands to start your application
     ]
 
