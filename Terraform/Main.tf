@@ -26,6 +26,7 @@ resource "aws_instance" "app_server" {
         Name = "ExampleAppServerInstance"
     }
     
+    
     provisioner "remote-exec" {
     inline = [
       "sudo yum update -y",
