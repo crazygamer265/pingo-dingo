@@ -26,15 +26,15 @@ resource "aws_instance" "app_server" {
         Name = "ExampleAppServerInstance"
     }
     
-    
+
     provisioner "remote-exec" {
     inline = [
       "sudo yum update -y",
       "mkdir project",
       "cd project",
       "sudo yum install git -y",
-      "git clone https://github.com/jmathew19/test.git",
-      "cd react-aws-terraform-project",
+      "git clone https://github.com/crazygamer265/pingo-dingo.git",
+      "cd pingo-dingo",
       "sudo yum install -y nodejs npm",
       "node --version",
       "npm --version",
@@ -42,7 +42,6 @@ resource "aws_instance" "app_server" {
       "npm install react-scripts --save-dev",
       "npm install react-dom",
       "npm install react-router-dom",
-      "cd ~/project/test",
       "npm start"
       # Additional commands to start your application
     ]
