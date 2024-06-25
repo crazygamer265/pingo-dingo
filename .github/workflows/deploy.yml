@@ -23,17 +23,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
  
-      - name: Install dependencies
-        run: npm install
+      # - name: Install dependencies
+      #   run: npm install
  
-      # Install dependencies, build your app if necessary here
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-            node-version: '21.6.1'
+      # # Install dependencies, build your app if necessary here
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v2
+      #   with:
+      #       node-version: '21.6.1'
         
-      - name: Build React app
-        run: npm run build
+      # - name: Build React app
+      #   run: npm run build
  
       - name: Terraform Init
         run: |
