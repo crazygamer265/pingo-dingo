@@ -34,5 +34,3 @@ jobs:
               echo hello
         env:
           DEBUG: true
-
-          ////////dfdfdfdfdf
