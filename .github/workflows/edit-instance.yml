@@ -20,7 +20,7 @@ jobs:
       - name: Decode private key
         run: |
             echo ${{env.PRIVATE_KEY_BASE64}} | base64 --decode > terraform-key-pairs.pem
-            chmod 700 terraform-key-pairs.pem
+            chmod 600 terraform-key-pairs.pem
 
       - name: SSH into EC2 Instance and update folder
         uses: appleboy/ssh-action@master
@@ -29,7 +29,7 @@ jobs:
             username: ec2-user
             key: ${{env.PRIVATE_KEY2}}
             script: |
-              cd project/test
+              cd project/pingo-dingo
               git pull origin
         env:
           DEBUG: true
