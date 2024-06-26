@@ -9,9 +9,7 @@ on:
     paths:
       - .github/workflows/deploy.yml
       - Terraform/Main.tf
-      
- 
-      
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
