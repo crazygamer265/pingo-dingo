@@ -25,7 +25,7 @@ resource "aws_instance" "app_server" {
     tags = {
         Name = "ExampleAppServerInstance"
     }
-  
+
     provisioner "remote-exec" {
     inline = [
       "sudo yum update -y",
@@ -66,6 +66,7 @@ variable "aws_access_key_id" {
   description = "AWS access key ID"
   type        = string
 }
+
 
 
 variable "aws_secret_access_key" {
