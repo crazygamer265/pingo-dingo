@@ -45,6 +45,9 @@ resource "aws_instance" "app_server" {
       "npm start"
     
 
+
+
+
     
       # Additional commands to start your application
     ]
