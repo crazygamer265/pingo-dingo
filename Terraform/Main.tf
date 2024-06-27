@@ -43,12 +43,6 @@ resource "aws_instance" "app_server" {
       "npm install react-router-dom",
       "cd ~/project/pingo-dingo/src",
       "npm start"
-    
-
-
-
-
-    
       # Additional commands to start your application
     ]
     connection {
