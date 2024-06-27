@@ -44,6 +44,8 @@ resource "aws_instance" "app_server" {
       "cd ~/project/pingo-dingo/src",
       "npm start"
     
+
+    
       # Additional commands to start your application
     ]
     connection {
