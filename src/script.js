@@ -1,3 +1,4 @@
+
 function validateForm(event) {
     event.preventDefault(); // Prevent the form from submitting by default
 
