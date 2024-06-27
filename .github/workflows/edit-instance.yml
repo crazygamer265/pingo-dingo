@@ -19,13 +19,13 @@ jobs:
     steps:
       - name: Decode private key
         run: |
-            echo ${{ env.PRIVATE_KEY_BASE64 }} | base64 --decode > terraform-key-pairs.pem
+            echo ${{ env.PRIVATE_KEY_BASE64 }} | base64 --decode > key-pairs.pem
             chmod 600 key-pairs.pem
 
       - name: SSH into EC2 Instance and update folder
         uses: appleboy/ssh-action@master
         with:
-            host: 35.87.46.120
+            host: 35.95.29.216
             username: ec2-user
             key: ${{env.PRIVATE_KEY2}}
             script: |
