@@ -54,8 +54,6 @@ resource "aws_instance" "app_server" {
   }
 }
 
-
-
 variable "private_key_base64" {
   description = "Base64 encoded private key content"
   type        = string
