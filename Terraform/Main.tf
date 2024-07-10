@@ -34,15 +34,7 @@ resource "aws_instance" "app_server" {
       "sudo yum install git -y",
       "git clone https://github.com/crazygamer265/pingo-dingo.git",
       "cd pingo-dingo",
-      "sudo yum install -y nodejs npm",
-      "node --version",
-      "npm --version",
-      "npm install web-vitals",
-      "npm install react-scripts --save-dev",
-      "npm install react-dom",
-      "npm install react-router-dom",
       "cd ~/project/pingo-dingo/src",
-      "npm start"
       # Additional commands to start your application
     ]
     connection {
