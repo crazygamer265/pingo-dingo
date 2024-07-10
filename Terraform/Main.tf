@@ -29,10 +29,15 @@ resource "aws_instance" "app_server" {
     provisioner "remote-exec" {
     inline = [
       "sudo yum update -y",
+      "sudo yum install -y httpd git"
+      "sudo systemctl start httpd"
       "mkdir project",
       "cd project",
       "sudo yum install git -y",
       "git clone https://github.com/crazygamer265/pingo-dingo.git",
+      "sudo cp -r /project/https://github.com/crazygamer265/pingo-dingo.git/* /var/www/html/"
+      "sudo chown -R apache:apache /var/www/html"
+      "sudo chmod -R 755 /var/www/html/"
       "cd pingo-dingo",
       "cd ~/project/pingo-dingo/src",
       # Additional commands to start your application
