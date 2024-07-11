@@ -15,8 +15,7 @@ provider "aws" {
     access_key = var.aws_access_key_id
     secret_key = var.aws_secret_access_key
 }
-
-
+#dfffff
 resource "aws_instance" "app_server" {
     ami = "ami-0b20a6f09484773af"
     instance_type = "t2.micro"
