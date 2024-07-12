@@ -27,6 +27,7 @@ resource "aws_instance" "app_server" {
 
     provisioner "remote-exec" {
     inline = [
+      "sudo npm install express body-parser bcryptjs passport passport-local express-session connect-flash mongoose",
       "sudo yum update -y",
       "sudo yum install httpd -y",
       "sudo systemctl start httpd",
@@ -46,7 +47,7 @@ resource "aws_instance" "app_server" {
       # "cd pingo-dingo",
       # "cd ~/project/pingo-dingo/src",
 
-      # Additional commands to start your application
+      # Additional commands to start your applicationsssssss
     ]
     connection {
       type        = "ssh"
