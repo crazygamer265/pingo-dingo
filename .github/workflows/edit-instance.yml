@@ -32,6 +32,9 @@ jobs:
               cd project/pingo-dingo
               git pull origin
               echo hello
+
+
+              
         env:
           DEBUG: true
 
