@@ -1,70 +1,89 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
-const path = require('path');
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
+const express = require('express')
+const app = express()
+const bcrypt = require('bcrypt')
+const passport = require('passport')
+const flash = require('express-flash')
+const session = require('express-session')
+const methodOverride = require('method-override')
 
-const app = express();
-const port = 3000;
+const initializePassport = require('./passport-config')
+initializePassport
+(passport,
+ email => users.find(user => user.email ===email),
+ id => users.find(user => user.id ===id),
+)
+const users = []
 
-// Body parser middleware
-app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view-engine', 'ejs')
+app.use(express.urlencoded({extended: false}))
+app.use(flash())
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}))
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(methodOverride('_method'))
 
-// MongoDB setup (adjust URL and options as needed)
-mongoose.connect('mongodb://localhost/myapp', { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.once('open', () => console.log('Connected to MongoDB'));
 
-// User model
-const User = require('./models/User'); // Define your User model in models/User.js
+app.get('/', checkAuthenticated, (req, res) => {
+    res.render('index.ejs', { name: req.user.name })
+})
 
-// Route to serve the index.html file
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+app.get('/login', checknotAuthenticated, (req, res) => {
+    res.render('login.ejs')
+})
 
-// Route to handle user registration
-app.post('/register', (req, res) => {
-    const { name, email, password } = req.body;
+app.post('/login', checknotAuthenticated, passport.authenticate('local', {
+    successRedirect: '/',
+    failureRediirect: '/login',
+    failureFlash: true
+}))
 
-    // Validate form data (add more validation as needed)
-    if (!name || !email || !password) {
-        return res.status(400).send('Please fill in all fields');
+app.get('/register', checknotAuthenticated, (req, res) => {
+    res.render('register.ejs')
+})
+
+app.post('/register', checknotAuthenticated, async (req, res) => {
+try {
+ const hashedPassword = await bcrypt.hash(req.body.password, 10)
+users.push({
+   id: Date.now().toString(),
+   name: req.body.name,
+   email: req.body.email,
+   password: hashedPassword
+})
+res.redirect('/login')
+} catch {
+   res.redirect('/register')
+}
+
+})
+
+app.delete('/logout', (req, res) => {
+
+    req.logOut()
+    res.redirect('/login')
+})
+
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()){
+        return next()
     }
 
-    // Check if user already exists
-    User.findOne({ email: email })
-        .then(user => {
-            if (user) {
-                return res.status(400).send('Email already registered');
-            } else {
-                // Create new user
-                const newUser = new User({
-                    name,
-                    email,
-                    password
-                });
+    res.redirect('/login')
+}
 
-                // Hash password before saving to database
-                bcrypt.genSalt(10, (err, salt) =>
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
-                        if (err) throw err;
-                        // Set password to hashed
-                        newUser.password = hash;
-                        // Save user
-                        newUser.save()
-                            .then(user => {
-                                res.redirect('/login'); // Redirect to login page after successful registration
-                            })
-                            .catch(err => console.log(err));
-                    }));
-            }
-        })
-        .catch(err => console.log(err));
-});
+function checknotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+       return res.redirect('/')
+    }
+    next()
+}
 
-// Start server
-app.listen(port, () => console.log(`Server started on http://localhost:${port}`));
+app.listen(3000)
