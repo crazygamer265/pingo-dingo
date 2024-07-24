@@ -25,7 +25,7 @@ jobs:
       - name: SSH into EC2 Instance and update folder
         uses: appleboy/ssh-action@master
         with:
-            host: 52.24.6.49
+            host: 34.217.30.201
             username: ec2-user
             key: ${{env.PRIVATE_KEY2}}
             script: |
@@ -34,7 +34,7 @@ jobs:
               echo hello
 
 
-              
+
         env:
           DEBUG: true
 
