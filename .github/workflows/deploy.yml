@@ -31,10 +31,6 @@ jobs:
       # - name: Build React app
       #   run: npm run build
  
-
-
-
-
       - name: Terraform Init
         run: |
           cd Terraform/
