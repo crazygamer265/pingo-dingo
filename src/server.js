@@ -1,6 +1,10 @@
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
+const port = 22;
+app.listen(port,(22) => {
+    console.log('Server running on port ${port}');
+});
 const express = require('express')
 const app = express()
 const bcrypt = require('bcrypt')
