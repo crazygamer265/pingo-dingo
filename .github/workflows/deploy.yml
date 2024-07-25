@@ -10,7 +10,7 @@ on:
       - .github/workflows/deploy.yml
       - Terraform/Main.tf
 
-      
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -30,6 +30,9 @@ jobs:
       #       node-version: '21.6.1'
       # - name: Build React app
       #   run: npm run build
+ 
+
+
  
       - name: Terraform Init
         run: |
