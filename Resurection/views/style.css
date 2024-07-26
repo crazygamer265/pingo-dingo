@@ -14,7 +14,7 @@
     position: relative;
 }
 
-.form-box{
+.form{
     width:90%;
     max-width: 450px;
     position: absolute;
@@ -25,7 +25,7 @@
     padding: 50px 60px 70px;
     text-align: center;
 }
-.form-box h1{
+.form-box {
     font-size: 30px;
     margin-bottom: 60px;
     color: #3c00a0;
@@ -77,7 +77,7 @@ form p a{
     display: flex;
     justify-content: space-between;
 }
-.btn-field button{
+.submit{
     flex-basis: 48%;
     background: #3c00a0;
     color: #fff;
