@@ -43,7 +43,15 @@ resource "aws_instance" "app_server" {
       "npm install react-scripts --save-dev",
       "npm install react-dom",
       "npm install react-router-dom",
-      "npm start"
+      "npm start",
+      "npm install dotenv",
+      "npm install passport",
+      "npm install express",
+      "npm install express-flash",
+      "npm install method-override",
+      "npm install passport-local",
+
+
       #"sudo chmod 644 ~/project/pingo-dingo/src/index.html",
       #"sudo mv ~/project/pingo-dingo/src/index.html /var/www/html/",
       #"sudo chmod 644 ~/project/pingo-dingo/src/style.css",
