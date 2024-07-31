@@ -2,9 +2,10 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
   }
   
-  const express = require('express')
-  const app = express()
-  const session = require('express-session')
+  const express = require('express');
+  const app = express();
+  app.use(session({ secret: '1234' }));
+  const session = require('express-session');
   require('dotenv').config();
 
 // Configure express-session
