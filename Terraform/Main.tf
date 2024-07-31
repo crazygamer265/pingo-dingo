@@ -50,6 +50,7 @@ resource "aws_instance" "app_server" {
       "npm install express-flash",
       "npm install method-override",
       "npm install passport-local",
+      "npm install express-session",
 
 
       #"sudo chmod 644 ~/project/pingo-dingo/src/index.html",

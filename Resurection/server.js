@@ -4,10 +4,19 @@ if (process.env.NODE_ENV !== 'production') {
   
   const express = require('express')
   const app = express()
+  const session = require('express-session')
+  require('dotenv').config();
+
+// Configure express-session
+app.use(session({
+  secret: process.env.SESSION_SECRET, // Ensure this is set
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true if using HTTPS
+}));
   const bcrypt = require('bcrypt')
   const passport = require('passport')
   const flash = require('express-flash')
-  const session = require('express-session')
   const methodOverride = require('method-override')
   
   const initializePassport = require('./passport-config')
@@ -20,7 +29,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 
-  
+
   
   const users = []
   
